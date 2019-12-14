@@ -1,6 +1,6 @@
 from functools import partial
+import gc
 import os
-import sys
 import threading
 import pytest
 from . import shell
@@ -28,15 +28,9 @@ def no_thread_leaks():
     Fail on thread leak.
     We do not use pytest-threadleak because it is not reliable.
     """
-
     yield
-
-    if sys.version_info < (3,):
-        return
-
-    main = threading.main_thread()
-    assert not [th for th in threading._dangling
-                if th is not main and th.is_alive()]
+    gc.collect()  # Clear the stuff from other function-level fixtures
+    assert threading.active_count() == 1  # Only the main thread
 
 
 @pytest.fixture(autouse=True)
@@ -48,9 +42,12 @@ def no_warnings(recwarn):
     warnings = []
     for warning in recwarn:  # pragma: no cover
         message = str(warning.message)
+        filename = warning.filename
         if (
             "Not importing directory" in message
             or "Using or importing the ABCs" in message
+            or "dns.hash module will be removed in future versions" in message
+            or ("eventlet" in filename and "eventlet" in filename)
         ):
             continue
         warnings.append("{w.filename}:{w.lineno} {w.message}".format(w=warning))
