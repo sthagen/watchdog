@@ -3,25 +3,33 @@
 Changelog
 ---------
 
+0.10.2
+~~~~~~
+
+2020-0x-xx • `full history <https://github.com/gorakhargosh/watchdog/compare/v0.10.1...master>`__
+
+- Thanks to our beloved contributors: @
+
+
 0.10.1
 ~~~~~~
 
-2020-xx-xx • `full history <https://github.com/gorakhargosh/watchdog/compare/v0.10.0...master>`__
+2020-01-30 • `full history <https://github.com/gorakhargosh/watchdog/compare/v0.10.0...v0.10.1>`__
 
-Other Changes
-=============
-
-- [snapshot] Added EmptyDirectorySnapshot (`#613 <https://github.com/gorakhargosh/watchdog/pull/613>`__)
-- Thanks to our beloved contributors: @Ajordat
+- Fixed Python 2.7 to 3.6 installation when the OS locale is set to POSIX (`#615 <https://github.com/gorakhargosh/watchdog/pull/615>`__)
+- Fixed the ``build_ext`` command on macOS  (`#618 <https://github.com/gorakhargosh/watchdog/pull/618>`__, `#620 <https://github.com/gorakhargosh/watchdog/pull/620>`_)
+- Moved requirements to ``setup.cfg``  (`#617 <https://github.com/gorakhargosh/watchdog/pull/617>`__)
+- [mac] Removed old C code for Python 2.5 in the `fsevents` C implementation
+- [snapshot] Added ``EmptyDirectorySnapshot`` (`#613 <https://github.com/gorakhargosh/watchdog/pull/613>`__)
+- Thanks to our beloved contributors: @Ajordat, @tehkirill, @BoboTiG
 
 
 0.10.0
 ~~~~~~
 
-2019-12-20 • `full history <https://github.com/gorakhargosh/watchdog/compare/v0.9.0...v0.10.0>`__
+2020-01-26 • `full history <https://github.com/gorakhargosh/watchdog/compare/v0.9.0...v0.10.0>`__
 
-Breaking Changes
-================
+**Breaking Changes**
 
 - Dropped support for Python 2.6, 3.2 and 3.3
 - Emitters that failed to start are now removed
@@ -30,8 +38,7 @@ Breaking Changes
 - [watchmedo] The utility is no more installed by default but via the extra
   ``watchdog[watchmedo]``
 
-Other Changes
-=============
+**Other Changes**
 
 - Fixed several Python 3 warnings
 - Identify synthesized events with ``is_synthetic`` attribute (`#369 <https://github.com/gorakhargosh/watchdog/pull/369>`__)
